@@ -1,0 +1,47 @@
+﻿@using MedCamp.Models.ViewModels
+@model List<DoctorInfoViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Data</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Categories</h4>
+                <div class="list-group">
+                    @foreach (var category in Model)
+                    {
+                        <label class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox" value="@category.Id">
+                            @category.Name
+                        </label>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-4">
+                    <div class="card">
+                        <img class="card-img-top" src="@item.Image" alt="Card image" style="width:100%">
+                        <div class="card-body">
+                            <h4 class="card-title">@item.Name</h4>
+                            <p class="card-text">@string.Join(", ", item.Speciality)</p>
+                            <a asp-controller="Home" asp-action="Doctor" asp-route-id="@item.Id" class="btn btn-primary">See Profile</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
