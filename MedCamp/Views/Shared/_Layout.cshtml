@@ -1,4 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@using MedCamp.Models
+@using MedCamp.Models.ViewModels
+@inject MedCampContext _context
+@{
+    var accessToken = Context.Request.Cookies["user-access-token"];
+    UserInfoViewModel user = null;
+    if (!string.IsNullOrEmpty(accessToken))
+    {
+        user=_context.Users.Where(x => x.AccessToken.Equals(accessToken)).Select(x=> new UserInfoViewModel {Name=x.FirstName,Role=x.Role.Name }).FirstOrDefault();
+    }
+}
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -19,12 +30,50 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-                        </li>
+                        @if(user!=null){
+                            if (user.Role.Equals("Admin"))
+                            {
+                                
+                            }
+                            else if (user.Role.Equals("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Admin" asp-action="Users">Users</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Admin" asp-action="Users">Users</a>
+                                </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Admin" asp-action="Users">Users</a>
+                                </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Admin" asp-action="Users">Users</a>
+                                </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Admin" asp-action="Users">Users</a>
+                                </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Admin" asp-action="Users">Users</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Profile">@user.Name</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">Logout</a>
+                                </li>
+                            }
+                        }
+                        else{
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

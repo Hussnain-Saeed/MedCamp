@@ -1,5 +1,41 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using MedCamp.Models
+@model User
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <div class="card">
+                <div class="card-header">Register</div>
+                <div class="card-body">
+                    <form asp-controller="Account" asp-action="Register" method="post">
+                        <div class="mb-3 mt-3">
+                             <label for="Name" class="form-label">Name:</label>
+                            <input asp-for="FirstName" type="text" class="form-control" placeholder="Name">
+                        </div>
+                          <div class="mb-3 mt-3">
+                             <label for="Name" class="form-label">Name:</label>
+                            <input asp-for="LastName" type="text" class="form-control" placeholder="Name">
+                        </div>
+                        <div class="mb-3 mt-3">
+                             <label for="Email" class="form-label">Email:</label>
+                            <input asp-for="Email" type="text" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="mb-3 mt-3">
+                             <label for="Password" class="form-label">Password:</label>
+                            <input asp-for="Password" type="password" class="form-control" placeholder="Password">
+                        </div>
+                        <div class="mb-3 mt-3">
+                             <label for="Phone" class="form-label">Phone:</label>
+                            <input asp-for="Phone" type="text" class="form-control" placeholder="Phone">
+                        </div>
+
+                        <div class="input-group">
+                            <button class="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
