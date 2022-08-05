@@ -1,0 +1,39 @@
+﻿@using MedCamp.Models
+@model DoctorDetail
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <div class="card">
+                <div class="card-header">DoctorDetail</div>
+                <div class="card-body">
+                    <form asp-controller="Admin" asp-action="CreateUpdateDoctorProfile" method="post">
+                        <div class="mb-3 mt-3">
+                             <label for="Image" class="form-label">Image:</label>
+                            <input asp-for="Image" type="text" class="form-control" placeholder="Image">
+                        </div>
+                        <div class="mb-3 mt-3">
+                             <label for="Description" class="form-label">Description:</label>
+                            <input asp-for="Description" type="text" class="form-control" placeholder="Description">
+                        </div>
+                         <div class="mb-3 mt-3">
+                             <label for="Fee" class="form-label">Description:</label>
+                            <input asp-for="Fee" type="number" class="form-control" placeholder="Fee">
+                        </div>
+                        <div class="mb-3 mt-3">
+                             <label for="DoctorId" class="form-label">Doctor:</label>
+                            <select asp-for="DoctorId" asp-items="@ViewBag.Doctors" class="form-control"></select>
+                        </div>
+                        <div class="input-group">
+                            <button class="btn btn-primary">Add/Update</button>
+                        </div>
+                        @if(ViewBag.Error!=""){
+                            <p class="text-danger">@ViewBag.Error</p>
+                        }
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

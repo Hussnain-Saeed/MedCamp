@@ -34,9 +34,9 @@ namespace MedCamp.Controllers
                                 .ToList() 
                 }).ToListAsync());
         }
-        public async Task<IActionResult> Doctor(int Id) // Doctor Profile
+        public async Task<IActionResult> Doctor(int id) // Doctor Profile
         {
-            return View(await _context.DoctorDetails.Include(model => model.Doctor).FirstOrDefaultAsync());
+            return View(await _context.DoctorDetails.Include(model => model.Doctor).Where(x=>x.Id==id).FirstOrDefaultAsync());
         }
         public IActionResult Privacy()
         {

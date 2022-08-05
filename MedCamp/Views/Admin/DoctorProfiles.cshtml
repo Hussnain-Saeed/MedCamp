@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MedCamp.Models.DoctorDetail>
+
+@{
+    ViewData["Title"] = "DoctorProfiles";
+}
+
+<h1>DoctorProfiles</h1>
+
+<p>
+    <a asp-controller="Admin" asp-action="CreateUpdateDoctorProfile">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Doctor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fee)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doctor.Id)
+            </td>
+            <td>
+                <a asp-controller="Admin" asp-action="CreateUpdateDoctorProfile" asp-route-id="@item.Id">Edit</a> |
+                <a asp-controller="Admin"  asp-action="DeleteDoctorProfile" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
